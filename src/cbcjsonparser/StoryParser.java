@@ -63,6 +63,7 @@ public class StoryParser {
 						title.toString().toLowerCase().contains(hood))
 					storiesToKeep.add((JSONObject) obj);
 				}
+				
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
