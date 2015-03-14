@@ -44,22 +44,26 @@ public class StoryParser {
 				"Sainte-Dorothée", "Sainte-Anne-De- Bellevue", "Old Montreal",
 				"Westmount", "Îles-Laval", "Roxboro", "Tour de la Bourse",
 				"Pierrefonds" };
+		
 		OutputStreamWriter file = null;		
 		JSONParser parser = new JSONParser();
 		File f = new File("./res/json/");
 		ArrayList<String> names = new ArrayList<String>(Arrays.asList(f.list()));
+		Object obj = null;
+		String hood = "";
+		
 		JSONObject jsonObj = null;
 		JSONObject story = null;
 		JSONObject keywords = null;
 		JSONObject title = null;
-		JSONArray storiesToKeep = new JSONArray();
-		Object obj = null;
-		String hood = "";
 		JSONObject storyToKeep = null;
 		JSONObject img = null;
 		JSONObject link = null;
 		JSONObject lastUpdate = null;
 		JSONObject summary = null;
+		
+		JSONArray storiesToKeep = new JSONArray();
+
 		try {
 			file = new OutputStreamWriter(new FileOutputStream(new File("stories.json")),
 					Charset.forName("UTF-8").newEncoder());
@@ -87,19 +91,31 @@ public class StoryParser {
 						storyToKeep.put("link", "www.cbc.ca" + link.get("$t"));
 						storyToKeep.put("image", img.get("$t"));
 						storyToKeep.put("summary", summary.get("$t"));
+						storyToKeep.put("keywords", keywords.get("$t"));
 						storyToKeep.put("neighborhood", hood);
 						storyToKeep.put("date", lastUpdate.get("$t"));
 						storiesToKeep.add(storyToKeep);
+						if (storiesToKeep.size() == 150){
+							i = names.size();
+							break;
+						}
 					}
 				}
-				file.write(storiesToKeep.toJSONString());
 			}
+			file.write(storiesToKeep.toJSONString());
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ParseException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				file.flush();
+				file.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }
