@@ -6,7 +6,9 @@ import java.io.OutputStreamWriter;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -49,7 +51,7 @@ public class PostalCodeScraper {
 		OutputStreamWriter file = null;		
 		Element tmp = null;
 		Element hood = null;
-		
+		JSONArray codes = new JSONArray();
 		try {
 			Document doc = Jsoup
 					.connect(
@@ -66,11 +68,13 @@ public class PostalCodeScraper {
 			for (int i = 0; i < data.size(); i++) {
 				tmp = data.get(i);
 				if (tmp.getElementsContainingText("Not assigned").size() == 0) {
-					hood = tmp.getElementsByTag("a").get(0);
-					obj.put(tmp.getElementsByTag("b").text(), hood.text());					
+					obj = new JSONObject();
+					obj.put("code", tmp.getElementsByTag("b").text());
+					obj.put("neighborhood", tmp.getElementsByTag("a").get(0).text());
+					codes.add(obj);
 				}
 			}
-			file.write(obj.toJSONString());
+			file.write(JSONValue.toJSONString(codes));
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
