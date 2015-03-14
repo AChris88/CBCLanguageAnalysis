@@ -87,7 +87,7 @@ public class StoryParser {
 						storyToKeep.put("link", "www.cbc.ca" + link.get("$t"));
 						storyToKeep.put("image", img.get("$t"));
 						storyToKeep.put("summary", summary.get("$t"));
-						storyToKeep.put("neightborhood", hood);
+						storyToKeep.put("neighborhood", hood);
 						storyToKeep.put("date", lastUpdate.get("$t"));
 						storiesToKeep.add(storyToKeep);
 					}
