@@ -4,6 +4,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 
 import org.json.simple.JSONObject;
 import org.jsoup.Jsoup;
@@ -17,6 +18,32 @@ public class PostalCodeScraper {
 		saveNeighborhoodCodesAsJSON();
 	}
 
+	public static ArrayList<String> getNeighborhoods(){
+		Element tmp = null;
+		ArrayList<String> hoods = new ArrayList<String>();
+		
+		try {
+			Document doc = Jsoup
+					.connect(
+							"http://en.wikipedia.org/wiki/List_of_H_postal_codes_of_Canada")
+					.get();
+			Element info = doc.getElementById("mw-content-text");
+			Elements data = info.getElementsByTag("table").get(0)
+					.getElementsByTag("td");
+			
+			for (int i = 0; i < data.size(); i++) {
+				tmp = data.get(i);
+				if (tmp.getElementsContainingText("Not assigned").size() == 0) {
+					if (!hoods.contains(tmp.getElementsByTag("a").get(0).text()))
+					hoods.add(tmp.getElementsByTag("a").get(0).text());
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return hoods;
+	}
+	
 	private static void saveNeighborhoodCodesAsJSON() {
 		JSONObject obj = new JSONObject();
 		OutputStreamWriter file = null;		
