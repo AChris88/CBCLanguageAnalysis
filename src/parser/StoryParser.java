@@ -21,28 +21,6 @@ public class StoryParser {
 	}
 
 	private static void parseStories() {
-		/*
-		 * String[] neighborhoods = { "Pointe-aux-Trembles", "Saint-Michel",
-		 * "Downtown Montreal", "Notre-Dame-de-Grâce", "Place Bonaventure",
-		 * "Duvernay-Est", "Dollard-des- Ormeaux", "Montreal East", "Ahuntsic",
-		 * "Place Desjardins", "Saint-François", "Rivière-des-Prairies",
-		 * "Griffintown", "Saint-Henri", "Saint-Vincent-de-Paul",
-		 * "L'Île-Bizard", "Villeray", "L'Île-Des-Soeurs", "Ville Émard",
-		 * "Duvernay", "Montréal-Nord", "Petite-Patrie", "Verdun", "Pont-Viau",
-		 * "Santa Claus", "Montreal North", "Plateau Mont-Royal", "Auteuil",
-		 * "Sainte-Geneviève", "Anjou", "Petite-Bourgogne", "Cartierville",
-		 * "Kirkland", "Centre-Sud", "Pointe-Saint-Charles", "Senneville",
-		 * "Mercier", "Saint-Laurent", "Sainte-Rose", "Akwesasne", "Vimont",
-		 * "Parc-Extension", "Laval-des-Rapides", "LaSalle", "Saint-Léonard",
-		 * "Mount Royal", "Fabreville", "Dorval", "Laval-sur-le-Lac",
-		 * "Ville Saint-Pierre", "Pointe-Claire", "Côte-des-Neiges", "Chomedey",
-		 * "Lachine", "Rosemont", "Maisonneuve", "Outremont", "Côte Saint-Luc",
-		 * "Hochelaga", "Beaconsfield", "Hampstead", "Montreal West",
-		 * "Sainte-Dorothée", "Sainte-Anne-De- Bellevue", "Old Montreal",
-		 * "Westmount", "Îles-Laval", "Roxboro", "Tour de la Bourse",
-		 * "Pierrefonds" };
-		 */
-
 		String[] neighborhoods = { "Pierrefonds-Roxboro",
 				"L'ile-Bizard-Sainte-Geneviève", "Saint-Laurent", "Lachine",
 				"Ahuntsic-Cartierville", "LaSalle", "Verdun", "Sud-Ouest",
